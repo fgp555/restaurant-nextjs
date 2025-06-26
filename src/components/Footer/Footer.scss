@@ -1,0 +1,11 @@
+// @import "../../styles/variables";
+@use "../../styles/variables" as *;
+
+.site-footer {
+  background-color: var(--color-surface);
+  border-top: var(--border-width) solid var(--border-color);
+  padding: var(--spacing-md) 0;
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}

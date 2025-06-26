@@ -1,0 +1,25 @@
+// @import "../styles/variables";
+@use "../styles/variables" as *;
+
+/* Ocultar el botón flotante de DevTools de Next.js */
+[data-nextjs-toast],
+[data-next-badge-root],
+[data-next-mark],
+[data-nextjs-dev-tools-button] {
+  display: none !important;
+  font-size: 0 !important;
+  margin-bottom: 10vh;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+
+  main {
+    flex: 1;
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+}

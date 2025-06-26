@@ -1,0 +1,76 @@
+@use "variables" as *;
+
+.btn {
+  font-size: var(--font-size-base);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  border: var(--border-width) solid transparent;
+  display: inline-block;
+  font-family: var(--font-family-base);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-surface);
+
+  &:hover {
+    background-color: var(--color-secondary-dark);
+  }
+}
+
+.btn-danger {
+  background-color: var(--color-error);
+  color: var(--color-surface);
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.btn-disabled {
+  background-color: var(--color-surface);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+  opacity: 0.6;
+
+  &:hover {
+    background-color: var(--color-surface);
+  }
+}
+
+/* Tamaños */
+.btn-small {
+  font-size: var(--font-size-sm);
+  padding: calc(var(--spacing-xs) + 2px) var(--spacing-sm);
+}
+
+.btn-medium {
+  font-size: var(--font-size-base);
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.btn-large {
+  font-size: var(--font-size-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+/* Íconos */
+i[class^="fa-"] {
+  cursor: pointer;
+  user-select: none;
+}
+
+.icon > i[class^="fa-"] {
+  margin-right: var(--spacing-sm);
+}

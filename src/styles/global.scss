@@ -1,0 +1,27 @@
+// src/styles/global.scss
+// @import "variables";
+@use "variables" as *;
+// @import "btn";
+@use "btn";
+
+/* src/styles/global.scss */
+
+body {
+  font-family: var(--font-family-base);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  margin: 0;
+  padding: 0;
+
+  &.dark {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+  }
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-family-heading);
+  margin-bottom: var(--spacing-sm);
+}

@@ -1,0 +1,39 @@
+// @import "../../styles/variables";
+@use "../../styles/variables" as *;
+
+.site-header {
+  background-color: var(--color-surface);
+  border-bottom: var(--border-width) solid var(--border-color);
+  padding: var(--spacing-md) 0;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-xl);
+    color: var(--color-primary);
+    margin: auto;
+  }
+
+  .nav {
+    display: flex;
+    gap: var(--spacing-lg);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    a {
+      text-decoration: none;
+      color: var(--color-text-primary);
+      transition: color var(--transition-fast);
+
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+  }
+}
