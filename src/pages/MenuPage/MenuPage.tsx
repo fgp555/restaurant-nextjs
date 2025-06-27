@@ -1,9 +1,9 @@
 import "./MenuPage.scss";
 
-export const MenuPage = () => {
+export default function MenuPage() {
   return (
     <div className="MenuPage">
       <h2>Menu Page</h2>
     </div>
   );
-};
+}

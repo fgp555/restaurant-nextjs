@@ -1,7 +1,7 @@
 // src/pages/HomePage/HomePage.tsx
 import "./HomePage.scss";
 
-export function HomePage() {
+export default function HomePage() {
   return (
     <div className="home-page">
       <h1 className="title">Bienvenidos a Restaurante Sabor & Arte</h1>
