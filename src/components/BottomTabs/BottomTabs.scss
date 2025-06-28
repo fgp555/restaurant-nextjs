@@ -1,7 +1,7 @@
 @use "../../styles/variables" as *;
 
 .bottom-tabs {
-  position: fixed;
+  position: sticky;
   bottom: 0;
   left: 0;
   width: 100%;

@@ -52,3 +52,6 @@ export function ChipButtonsCategories({ onSelect }: ChipButtonsCategoriesProps) 
     </div>
   );
 }
+
+
+
