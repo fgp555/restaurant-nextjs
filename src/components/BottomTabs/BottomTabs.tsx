@@ -1,4 +1,3 @@
-// src/components/BottomTabs/BottomTabs.tsx
 "use client";
 
 import Link from "next/link";
@@ -16,10 +15,18 @@ export function BottomTabs() {
         <i className="fa-solid fa-utensils"></i>
         <span>Menú</span>
       </Link>
-      <Link href="/meseros" className={`tab ${isActive("/meseros") ? "active" : ""}`}>
+      <Link href="/cuenta" className={`tab ${isActive("/cuenta") ? "active" : ""}`}>
+        <i className="fa-solid fa-user"></i>
+        <span>Mi cuenta</span>
+      </Link>
+      <Link href="/orden" className={`tab ${isActive("/orden") ? "active" : ""}`}>
+        <i className="fa-solid fa-receipt"></i>
+        <span>Mi orden</span>
+      </Link>
+      {/* <Link href="/meseros" className={`tab ${isActive("/meseros") ? "active" : ""}`}>
         <i className="fa-solid fa-user-tie"></i>
         <span>Meseros</span>
-      </Link>
+      </Link> */}
       <Link href="/sedes" className={`tab ${isActive("/sedes") ? "active" : ""}`}>
         <i className="fa-solid fa-map-marker-alt"></i>
         <span>Sedes</span>

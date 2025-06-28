@@ -1,5 +1,3 @@
-// ChipButtonsCategories.tsx
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -13,11 +11,11 @@ interface Category {
 
 interface ChipButtonsCategoriesProps {
   onSelect: (categoryId: number | null) => void;
+  activeId?: number | null;
 }
 
-export function ChipButtonsCategories({ onSelect }: ChipButtonsCategoriesProps) {
+export function ChipButtonsCategories({ onSelect, activeId }: ChipButtonsCategoriesProps) {
   const [categories, setCategories] = useState<Category[]>([]);
-  const [activeId, setActiveId] = useState<number | null>(null);
 
   useEffect(() => {
     async function fetchCategories() {
@@ -33,15 +31,11 @@ export function ChipButtonsCategories({ onSelect }: ChipButtonsCategoriesProps) 
   }, []);
 
   const handleClick = (id: number | null) => {
-    setActiveId(id);
     onSelect(id);
   };
 
   return (
     <div className="chip-buttons">
-      <button className={`chip ${activeId === null ? "active" : ""}`} onClick={() => handleClick(null)}>
-        Todos
-      </button>
       {categories.map((cat) => (
         <button
           key={cat.id}
