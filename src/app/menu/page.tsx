@@ -1,24 +1,35 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import api from "@/lib/axios";
+import axiosInstance from "@/lib/axios";
 import "./menus.scss";
 import { ChipButtonsCategories } from "@/components/ChipButtonsCategories/ChipButtonsCategories";
 
-interface MenuItem {
+interface IMenu {
   id: number;
   name: string;
   description: string;
   price: number;
 }
 
+interface ICategory {
+  id: number;
+  name: string;
+  slug: string;
+  order: number;
+  description: string;
+  thumbnail: string;
+  menus: IMenu[];
+}
+
 export default function MenusPage() {
-  const [menus, setMenus] = useState<MenuItem[]>([]);
+  const [menus, setMenus] = useState<IMenu[]>([]);
+  const [categories, setCategories] = useState<ICategory[]>([]);
 
   const loadAllMenus = async () => {
     try {
-      const res = await api.get<MenuItem[]>("/menu");
-      setMenus(res.data);
+      const res = await axiosInstance.get<ICategory[]>("/restaurant/categories/la-espanolita");
+      setCategories(res.data);
     } catch (err) {
       console.error("Error al cargar menú:", err);
     }
@@ -33,8 +44,8 @@ export default function MenusPage() {
       loadAllMenus();
     } else {
       try {
-        const res = await api.get(`/category/${id}`);
-        setMenus(res.data.menus); // los menus vienen con la categoría
+        const res = await axiosInstance.get(`/category/${id}`);
+        setMenus(res.data.menus);
       } catch (err) {
         console.error("Error al filtrar categoría:", err);
       }
@@ -46,6 +57,7 @@ export default function MenusPage() {
       <ChipButtonsCategories onSelect={handleCategorySelect} />
 
       <h1>Menú</h1>
+      {/* <pre>{JSON.stringify(categories, null, 2)}</pre> */}
       <div className="menus-list">
         {menus.map((item) => (
           <div key={item.id} className="menu-card">

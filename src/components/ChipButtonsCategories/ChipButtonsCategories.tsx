@@ -1,7 +1,9 @@
+// ChipButtonsCategories.tsx
+
 "use client";
 
 import { useEffect, useState } from "react";
-import api from "@/lib/axios";
+import axiosInstance from "@/lib/axios";
 import "./ChipButtonsCategories.scss";
 
 interface Category {
@@ -20,7 +22,7 @@ export function ChipButtonsCategories({ onSelect }: ChipButtonsCategoriesProps) 
   useEffect(() => {
     async function fetchCategories() {
       try {
-        const res = await api.get<Category[]>("/category");
+        const res = await axiosInstance.get<Category[]>("/restaurant/categories/la-espanolita");
         setCategories(res.data);
       } catch (err) {
         console.error("Error fetching categories:", err);

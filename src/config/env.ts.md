@@ -1,3 +1,5 @@
+```sh
+
 export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://giomr.site";
 // console.log("VITE_API_URL", viteApiURL);
 
