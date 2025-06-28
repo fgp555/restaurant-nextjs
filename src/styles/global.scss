@@ -12,6 +12,9 @@ body {
   color: var(--color-text-primary);
   margin: 0;
   padding: 0;
+  max-width: 30rem;
+  margin: 0 auto;
+  position: relative;
 
   &.dark {
     background-color: var(--color-background);

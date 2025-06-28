@@ -34,7 +34,7 @@ export default function MenusPage() {
     } else {
       try {
         const res = await api.get(`/category/${id}`);
-        setMenus(res.data.items); // los items vienen con la categoría
+        setMenus(res.data.menus); // los menus vienen con la categoría
       } catch (err) {
         console.error("Error al filtrar categoría:", err);
       }
