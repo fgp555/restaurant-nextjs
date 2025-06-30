@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import axiosInstance from "@/lib/axios";
 import "./menus.scss";
 import { ChipButtonsCategories } from "@/components/ChipButtonsCategories/ChipButtonsCategories";
+import ChipComp from "@/components/ChipButtonsCategories/ChipComp";
 
 interface IMenu {
   id: number;
@@ -76,7 +77,8 @@ export default function MenusPage() {
 
   return (
     <div className="menus-page">
-      <h1>Menú</h1>
+      {/* <h1>Menú</h1> */}
+      {/* <ChipComp /> */}
 
       <ChipButtonsCategories onSelect={handleCategorySelect} activeId={activeCategoryId} />
 

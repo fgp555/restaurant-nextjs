@@ -16,13 +16,13 @@ export function BottomTabs() {
         <span>Menú</span>
       </Link>
       <Link href="/cuenta" className={`tab ${isActive("/cuenta") ? "active" : ""}`}>
-        <i className="fa-solid fa-user"></i>
+        <i className="fa-solid fa-receipt"></i>
         <span>Mi cuenta</span>
       </Link>
-      <Link href="/orden" className={`tab ${isActive("/orden") ? "active" : ""}`}>
+      {/* <Link href="/orden" className={`tab ${isActive("/orden") ? "active" : ""}`}>
         <i className="fa-solid fa-receipt"></i>
         <span>Mi orden</span>
-      </Link>
+      </Link> */}
       {/* <Link href="/meseros" className={`tab ${isActive("/meseros") ? "active" : ""}`}>
         <i className="fa-solid fa-user-tie"></i>
         <span>Meseros</span>
