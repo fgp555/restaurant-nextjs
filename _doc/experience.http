@@ -1,0 +1,23 @@
+### 📄 Create new experience: agregar
+POST https://giomr.site/api/experience
+Content-Type: application/json
+
+{
+  "name": "Juan Pérez",
+  "email": "juan@example.com",
+  "whatsapp": "+51999999999",
+  "birthday": "1990-07-02",
+  "sawAd": true,
+  "howDidYouKnowUs": "Por Instagram",
+  "branchVisited": "Sede Central",
+  "waiterName": "Carlos",
+  "experienceRating": 5,
+  "improvementSuggestions": "Todo excelente, sigan así"
+}
+
+###
+
+### 📄 Get all experiences consultar
+GET https://giomr.site/api/experience
+Content-Type: application/json
+
