@@ -25,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           referrerPolicy="no-referrer"
         />
       </head>
+      
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div className="layout">
           <Header />
