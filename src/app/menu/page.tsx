@@ -23,6 +23,10 @@ interface ICategory {
   menus: IMenu[];
 }
 
+/* 
+imagen por defecto https://images-mini.cluvi.com/q4vvJKV5Kt/w_1200_q4vvJKV5Kt_mazorca.jpg
+*/
+
 export default function MenusPage() {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [activeCategoryId, setActiveCategoryId] = useState<number | null>(null);
