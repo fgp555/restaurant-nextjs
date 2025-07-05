@@ -5,7 +5,7 @@ import "./../styles/MenuModal.scss";
 type Menu = {
   id: number;
   name: string;
-  image: string;
+  image?: string | null;
   price: number;
   description: string;
 };
@@ -23,7 +23,11 @@ export default function MenuModal({
 }) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Cierra con Escape
+  const imageSrc =
+    menu.image && menu.image !== "null"
+      ? menu.image
+      : "https://images-mini.cluvi.com/fOV3vuIoU0/w_1200_fOV3vuIoU0_la-llanera-sangilena-43.png";
+
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -32,7 +36,6 @@ export default function MenuModal({
     return () => document.removeEventListener("keydown", handleKey);
   }, [onClose]);
 
-  // Cierra con clic fuera
   const handleClickOutside = (e: React.MouseEvent<HTMLDivElement>) => {
     if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
       onClose();
@@ -45,7 +48,7 @@ export default function MenuModal({
         <button className="close-button" onClick={onClose}>
           <i className="fa-solid fa-xmark" />
         </button>
-        <img src={menu.image} alt={menu.name} />
+        <img src={imageSrc} alt={menu.name} />
         <h2>{menu.name}</h2>
         <p className="description">{menu.description}</p>
         <p className="price">
