@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario de Feedback</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        max-width: 600px;
+        margin: auto;
+        background-color: #f9f9f9;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="date"],
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        box-sizing: border-box;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+
+      textarea {
+        resize: vertical;
+      }
+
+      input[type="radio"],
+      input[type="checkbox"] {
+        margin-right: 8px;
+      }
+
+      .social-buttons {
+        margin-top: 10px;
+      }
+
+      .social-buttons button {
+        margin-right: 10px;
+        padding: 6px 12px;
+        border: none;
+        background-color: #e0e0e0;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .social-buttons button:hover {
+        background-color: #ccc;
+      }
+
+      .stars {
+        margin-top: 5px;
+      }
+
+      .stars i {
+        font-size: 24px;
+        color: #ccc;
+        cursor: pointer;
+        transition: color 0.2s ease;
+      }
+
+      .stars i.selected {
+        color: gold;
+      }
+
+      button[type="submit"],
+      .btn {
+        margin-top: 20px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 12px;
+        width: 100%;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      button[type="submit"]:hover,
+      .btn:hover {
+        background-color: #218838;
+      }
+
+      strong {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input.error,
+      textarea.error {
+        border-color: red;
+      }
+
+      .success-message {
+        color: green;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      .error-message {
+        color: red;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+      .howMet label {
+        margin: 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Formulario de Feedback</h2>
+
+    <form id="feedbackForm">
+      <label>Nombre</label>
+      <input type="text" name="nombre" required />
+
+      <label>Email</label>
+      <input type="email" name="email" required />
+
+      <label>WhatsApp</label>
+      <input type="text" name="whatsapp" required />
+
+      <label>¿Cuál es tu fecha de cumpleaños?</label>
+      <input type="date" name="birthday" required />
+
+      <label>¿Recuerdas el nombre del Meser@ que te atendió durante la visita?</label>
+      <input type="text" name="waiterName" />
+
+      <label>¿Cómo nos conociste?</label>
+      <div class="howMet">
+        <label><input type="radio" name="howMet" value="recomendacion" required /> Recomendación de alguien</label>
+        <label
+          ><input type="radio" name="howMet" value="anuncio" required /> Vi un anuncio publicitario en
+          Facebook/Instagram/Tiktok</label
+        >
+        <label><input type="radio" name="howMet" value="camino" required /> Los ví mientras caminaba y entré</label>
+        <label><input type="radio" name="howMet" value="cliente" required /> Ya los conocía, soy cliente</label>
+      </div>
+
+      <div id="socialButtons" class="social-buttons" style="display: none; margin-top: 10px">
+        <strong>¿Dónde viste el anuncio?</strong><br />
+        <button type="button" onclick="selectSocial('facebook')">Facebook</button>
+        <button type="button" onclick="selectSocial('instagram')">Instagram</button>
+        <button type="button" onclick="selectSocial('tiktok')">Tiktok</button>
+      </div>
+
+      <input type="hidden" name="socialMediaSource" id="socialMediaSource" />
+
+      <label>¿Cómo calificarías tu experiencia?</label>
+      <div class="stars" id="stars">
+        <i class="fas fa-star" data-value="1"></i>
+        <i class="fas fa-star" data-value="2"></i>
+        <i class="fas fa-star" data-value="3"></i>
+        <i class="fas fa-star" data-value="4"></i>
+        <i class="fas fa-star" data-value="5"></i>
+      </div>
+      <input type="hidden" name="rating" id="rating" />
+
+      <div id="improvementBox" style="display: none">
+        <label>Si no obtuvimos un 5 en tu valoración, por favor indícanos cómo podemos mejorar 👇</label>
+        <textarea name="improvementSuggestions" rows="3"></textarea>
+      </div>
+
+      <label>
+        <input type="checkbox" name="acceptTerms" required />
+        Acepto los términos y condiciones de la empresa. Al proporcionar mi número de WhatsApp acepto recibir
+        promociones esporádicas (Prometemos no enviarte spam).
+      </label>
+
+      <button type="submit">Enviar</button>
+    </form>
+    <button type="button" onclick="mostrarObjeto()" class="btn">Mostrar objeto</button>
+    <pre id="outputBox" style="margin-top: 20px; background: #f1f1f1; padding: 10px; display: none"></pre>
+
+    <script>
+      const form = document.getElementById("feedbackForm");
+      const socialButtons = document.getElementById("socialButtons");
+      const socialMediaSource = document.getElementById("socialMediaSource");
+      const stars = document.querySelectorAll("#stars i");
+      const ratingInput = document.getElementById("rating");
+      const improvementBox = document.getElementById("improvementBox");
+
+      // Detectar cambios en los radios de howMet
+      document.querySelectorAll('input[name="howMet"]').forEach((input) => {
+        input.addEventListener("change", () => {
+          if (input.value === "anuncio") {
+            socialButtons.style.display = "block";
+          } else {
+            socialButtons.style.display = "none";
+            socialMediaSource.value = "";
+          }
+        });
+      });
+
+      function selectSocial(source) {
+        socialMediaSource.value = source;
+        [...socialButtons.querySelectorAll("button")].forEach((btn) => {
+          btn.style.backgroundColor = btn.innerText.toLowerCase() === source ? "#007bff" : "";
+          btn.style.color = btn.innerText.toLowerCase() === source ? "#fff" : "";
+        });
+      }
+
+      stars.forEach((star) => {
+        star.addEventListener("click", () => {
+          const value = parseInt(star.getAttribute("data-value"));
+          ratingInput.value = value;
+          stars.forEach((s) => {
+            s.classList.toggle("selected", parseInt(s.getAttribute("data-value")) <= value);
+          });
+          improvementBox.style.display = value < 5 ? "block" : "none";
+        });
+      });
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        data.acceptTerms = !!formData.get("acceptTerms");
+
+        try {
+          await axios.post("https://giomr.site/api/experience", data);
+          alert("Formulario enviado correctamente.");
+          form.reset();
+          socialButtons.style.display = "none";
+          stars.forEach((s) => s.classList.remove("selected"));
+          improvementBox.style.display = "none";
+          ratingInput.value = "";
+        } catch (error) {
+          console.error(error);
+          alert("Error al enviar el formulario.");
+        }
+      });
+
+      function mostrarObjeto() {
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        data.acceptTerms = !!formData.get("acceptTerms");
+
+        const outputBox = document.getElementById("outputBox");
+        outputBox.textContent = JSON.stringify(data, null, 2);
+        outputBox.style.display = "block";
+
+        console.log("Objeto del formulario:", data);
+      }
+    </script>
+  </body>
+</html>
