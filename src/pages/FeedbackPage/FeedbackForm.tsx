@@ -52,6 +52,7 @@ const FeedbackForm = ({ sede }: Props) => {
 
     const payload = {
       ...data,
+      branchVisited: sede,
       howDidYouKnowUs: howMet,
       socialMediaSource: howMet === "anuncio" ? socialSource : "",
       experienceRating: rating,
@@ -75,7 +76,7 @@ const FeedbackForm = ({ sede }: Props) => {
     }
 
     try {
-      await axiosInstance.post("/experience", payload);
+      await axiosInstance.post("/feedback", payload);
       alert("Formulario enviado correctamente.");
 
       // Reset
