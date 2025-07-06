@@ -1,5 +1,5 @@
-// components/CardMenu.tsx
-import "./../styles/CardMenu.scss";
+/* eslint-disable @next/next/no-img-element */
+import "../MenuCard/MenuCard.scss";
 
 type Menu = {
   id: number;
@@ -18,7 +18,7 @@ export default function CardMenu({
   const imageSrc =
     menu.image && menu.image !== "null"
       ? menu.image
-      : "https://images-mini.cluvi.com/fOV3vuIoU0/w_1200_fOV3vuIoU0_la-llanera-sangilena-43.png";
+      : "https://images-mini.cluvi.com/q4vvJKV5Kt/w_1200_q4vvJKV5Kt_mazorca.jpg";
 
   return (
     <div className="card-menu" onClick={onClick}>

@@ -1,6 +1,7 @@
 // components/MenuModal.tsx
 import { useEffect, useRef } from "react";
-import "./../styles/MenuModal.scss";
+import "../MenuModal/MenuModal.scss";
+
 
 type Menu = {
   id: number;
