@@ -10,6 +10,7 @@ export default function HomePage() {
         Disfruta de una experiencia culinaria única con sabores tradicionales y toques modernos. ¡Te esperamos!
       </p>
       <button className="cta-button">Ver Menú</button>
+      
     </div>
   );
 }
