@@ -7,12 +7,12 @@ Content-Type: application/json
   "email": "juan@example.com",
   "whatsapp": "+51999999999",
   "birthday": "1990-07-02",
-  "sawAd": true,
-  "howDidYouKnowUs": "Por Instagram",
-  "branchVisited": "Sede Central",
   "waiterName": "Carlos",
-  "experienceRating": 5,
-  "improvementSuggestions": "Todo excelente, sigan así"
+  "howDidYouKnowUs": "anuncio",
+  "socialMediaSource": "instagram",
+  "experienceRating": 4,
+  "improvementSuggestions": "Todo estuvo bien, pero podría ser más rápido el servicio.",
+  "acceptTerms": true
 }
 
 ###
