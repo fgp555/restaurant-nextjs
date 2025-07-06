@@ -1,7 +1,8 @@
+```tsx
 "use client";
 import "./page.scss";
 import React, { useState } from "react";
-import api from "@/lib/axios"; 
+import api from "@/lib/axios";
 
 interface FormData {
   name: string;
@@ -43,18 +44,15 @@ const ExperienceForm: React.FC = () => {
     switch (name) {
       case "name":
         if (!value.trim()) error = "Solo letras y espacios permitidos.";
-        else if (!/^[a-zA-Z\s]+$/.test(value))
-          error = "Solo letras y espacios permitidos.";
+        else if (!/^[a-zA-Z\s]+$/.test(value)) error = "Solo letras y espacios permitidos.";
         break;
       case "email":
         if (!value.trim()) error = "Formato de correo inválido.";
-        else if (!/^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/.test(value))
-          error = "Formato de correo inválido.";
+        else if (!/^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/.test(value)) error = "Formato de correo inválido.";
         break;
       case "whatsapp":
         if (!value.trim()) error = "Número inválido.";
-        else if (!/^\+?[0-9\s\-]{7,15}$/.test(value))
-          error = "Número inválido.";
+        else if (!/^\+?[0-9\s\-]{7,15}$/.test(value)) error = "Número inválido.";
         break;
       case "sawAd":
       case "howDidYouKnowUs":
@@ -71,13 +69,11 @@ const ExperienceForm: React.FC = () => {
     setFormErrors((prev) => ({ ...prev, [name]: error }));
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     validateField(name, value);
-   
+
     setShowSuccessMessage(false);
     setShowErrorMessage(false);
     setErrorMessage("");
@@ -97,7 +93,6 @@ const ExperienceForm: React.FC = () => {
       "improvementSuggestions",
     ];
 
-    
     const newFormErrors: Partial<FormData> = {};
     requiredFields.forEach((field) => {
       const value = formData[field as keyof FormData];
@@ -137,7 +132,7 @@ const ExperienceForm: React.FC = () => {
     }
 
     setLoading(true);
-    setShowSuccessMessage(false); 
+    setShowSuccessMessage(false);
     setShowErrorMessage(false);
     setErrorMessage("");
 
@@ -150,8 +145,8 @@ const ExperienceForm: React.FC = () => {
       const respuesta = await api.post("/experience", payload);
       console.log(respuesta);
 
-      setShowSuccessMessage(true); 
-      setFormData({ 
+      setShowSuccessMessage(true);
+      setFormData({
         name: "",
         email: "",
         whatsapp: "",
@@ -163,11 +158,11 @@ const ExperienceForm: React.FC = () => {
         experienceRating: "",
         improvementSuggestions: "",
       });
-      setFormErrors({}); 
+      setFormErrors({});
       setTimeout(() => {
-        setShowSuccessMessage(false); 
+        setShowSuccessMessage(false);
       }, 2000);
-    } catch (error: any) { 
+    } catch (error: any) {
       console.error("Error al enviar formulario:", error);
       let message = "Ocurrió un error al enviar el formulario. Por favor, intentá nuevamente.";
       if (error.response && error.response.data && error.response.data.message) {
@@ -176,10 +171,10 @@ const ExperienceForm: React.FC = () => {
         message = `Error: ${error.message}`;
       }
       setErrorMessage(message);
-      setShowErrorMessage(true); 
+      setShowErrorMessage(true);
       setTimeout(() => {
-        setShowErrorMessage(false); 
-        setErrorMessage(""); 
+        setShowErrorMessage(false);
+        setErrorMessage("");
       }, 3000);
     } finally {
       setLoading(false);
@@ -194,34 +189,20 @@ const ExperienceForm: React.FC = () => {
         <div className="container-form">
           <h1 className="form-title">Queremos saber tu opinión</h1>
           <p className="form-text">
-            ¡Gracias por enriquecer nuestra experiencia con tu opinión! Esta
-            encuesta solo tomará 30 segundos. Tus comentarios son muy
-            importantes para seguir mejorando nuestros procesos y hacer de tu
-            visita algo inolvidable. Como agradecimiento te enviaremos un
-            pequeño detalle a tu correo.
+            ¡Gracias por enriquecer nuestra experiencia con tu opinión! Esta encuesta solo tomará 30 segundos. Tus
+            comentarios son muy importantes para seguir mejorando nuestros procesos y hacer de tu visita algo
+            inolvidable. Como agradecimiento te enviaremos un pequeño detalle a tu correo.
           </p>
           <div className="line"></div>
 
           {/* Nombre */}
           <label htmlFor="name">Nombre*</label>
-          <input
-            type="text"
-            name="name"
-            placeholder="Nombre completo"
-            value={formData.name}
-            onChange={handleChange}
-          />
+          <input type="text" name="name" placeholder="Nombre completo" value={formData.name} onChange={handleChange} />
           {formErrors.name && <p className="error">{formErrors.name}</p>}
 
           {/* Email */}
           <label htmlFor="email">Email *</label>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-          />
+          <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
           {formErrors.email && <p className="error">{formErrors.email}</p>}
 
           {/* WhatsApp */}
@@ -234,24 +215,14 @@ const ExperienceForm: React.FC = () => {
             value={formData.whatsapp}
             onChange={handleChange}
           />
-          {formErrors.whatsapp && (
-            <p className="error">{formErrors.whatsapp}</p>
-          )}
+          {formErrors.whatsapp && <p className="error">{formErrors.whatsapp}</p>}
 
           {/* Cumpleaños */}
           <label htmlFor="birthday">¿Cuál es tu fecha de cumpleaños?</label>
-          <input
-            type="date"
-            id="birthday"
-            name="birthday"
-            value={formData.birthday}
-            onChange={handleChange}
-          />
+          <input type="date" id="birthday" name="birthday" value={formData.birthday} onChange={handleChange} />
 
           {/* Nombre del mesero */}
-          <label htmlFor="waiterName">
-            ¿Podrías indicarnos el nombre del mesero?
-          </label>
+          <label htmlFor="waiterName">¿Podrías indicarnos el nombre del mesero?</label>
           <input
             type="text"
             id="waiterName"
@@ -263,28 +234,13 @@ const ExperienceForm: React.FC = () => {
 
           {/* Anuncio publicitario */}
           <fieldset>
-            <legend>
-              ¿Viste algún anuncio publicitario que influyó en tu decisión de
-              visitarnos? *
-            </legend>
+            <legend>¿Viste algún anuncio publicitario que influyó en tu decisión de visitarnos? *</legend>
             <label>
-              <input
-                type="radio"
-                name="sawAd"
-                value="Sí"
-                checked={formData.sawAd === "Sí"}
-                onChange={handleChange}
-              />
+              <input type="radio" name="sawAd" value="Sí" checked={formData.sawAd === "Sí"} onChange={handleChange} />
               Sí
             </label>
             <label>
-              <input
-                type="radio"
-                name="sawAd"
-                value="No"
-                checked={formData.sawAd === "No"}
-                onChange={handleChange}
-              />
+              <input type="radio" name="sawAd" value="No" checked={formData.sawAd === "No"} onChange={handleChange} />
               No
             </label>
             {formErrors.sawAd && <p className="error">{formErrors.sawAd}</p>}
@@ -298,9 +254,7 @@ const ExperienceForm: React.FC = () => {
                 type="radio"
                 name="howDidYouKnowUs"
                 value="Recomendación de alguien"
-                checked={
-                  formData.howDidYouKnowUs === "Recomendación de alguien"
-                }
+                checked={formData.howDidYouKnowUs === "Recomendación de alguien"}
                 onChange={handleChange}
               />
               Recomendación de alguien
@@ -310,10 +264,7 @@ const ExperienceForm: React.FC = () => {
                 type="radio"
                 name="howDidYouKnowUs"
                 value="Vi un anuncio publicitario en Facebook/Instagram"
-                checked={
-                  formData.howDidYouKnowUs ===
-                  "Vi un anuncio publicitario en Facebook/Instagram"
-                }
+                checked={formData.howDidYouKnowUs === "Vi un anuncio publicitario en Facebook/Instagram"}
                 onChange={handleChange}
               />
               Vi un anuncio publicitario en Facebook/Instagram
@@ -323,10 +274,7 @@ const ExperienceForm: React.FC = () => {
                 type="radio"
                 name="howDidYouKnowUs"
                 value="Los vi mientras caminaba y entré"
-                checked={
-                  formData.howDidYouKnowUs ===
-                  "Los vi mientras caminaba y entré"
-                }
+                checked={formData.howDidYouKnowUs === "Los vi mientras caminaba y entré"}
                 onChange={handleChange}
               />
               Los vi mientras caminaba y entré
@@ -336,22 +284,16 @@ const ExperienceForm: React.FC = () => {
                 type="radio"
                 name="howDidYouKnowUs"
                 value="Ya los conocía, soy cliente"
-                checked={
-                  formData.howDidYouKnowUs === "Ya los conocía, soy cliente"
-                }
+                checked={formData.howDidYouKnowUs === "Ya los conocía, soy cliente"}
                 onChange={handleChange}
               />
               Ya los conocía, soy cliente
             </label>
-            {formErrors.howDidYouKnowUs && (
-              <p className="error">{formErrors.howDidYouKnowUs}</p>
-            )}
+            {formErrors.howDidYouKnowUs && <p className="error">{formErrors.howDidYouKnowUs}</p>}
           </fieldset>
 
           {/* Estrellas */}
-          <label>
-            ¿Cómo calificarías la experiencia? (Siendo 1 la menor y 5 la mayor) *
-          </label>
+          <label>¿Cómo calificarías la experiencia? (Siendo 1 la menor y 5 la mayor) *</label>
           <div className="rating-stars" style={{ display: "flex", gap: "0.5rem" }}>
             {[1, 2, 3, 4, 5].map((value) => (
               <label key={value}>
@@ -366,10 +308,7 @@ const ExperienceForm: React.FC = () => {
                 <span
                   style={{
                     fontSize: "2rem",
-                    color:
-                      Number(formData.experienceRating) >= value
-                        ? "#FFD700"
-                        : "#ccc",
+                    color: Number(formData.experienceRating) >= value ? "#FFD700" : "#ccc",
                     cursor: "pointer",
                   }}
                 >
@@ -378,14 +317,10 @@ const ExperienceForm: React.FC = () => {
               </label>
             ))}
           </div>
-          {formErrors.experienceRating && (
-            <p className="error">{formErrors.experienceRating}</p>
-          )}
+          {formErrors.experienceRating && <p className="error">{formErrors.experienceRating}</p>}
 
           {/* Sugerencias */}
-          <label htmlFor="improvementSuggestions">
-            ¿Cómo podemos mejorar nuestra experiencia? *
-          </label>
+          <label htmlFor="improvementSuggestions">¿Cómo podemos mejorar nuestra experiencia? *</label>
           <input
             id="improvementSuggestions"
             name="improvementSuggestions"
@@ -393,29 +328,13 @@ const ExperienceForm: React.FC = () => {
             value={formData.improvementSuggestions}
             onChange={handleChange}
           />
-          {formErrors.improvementSuggestions && (
-            <p className="error">{formErrors.improvementSuggestions}</p>
-          )}
+          {formErrors.improvementSuggestions && <p className="error">{formErrors.improvementSuggestions}</p>}
 
           {/* Cargando */}
           {loading && (
             <div className="experience-form-loader">
-              <svg
-                width="50"
-                height="50"
-                viewBox="0 0 100 100"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="40"
-                  
-                  strokeWidth="8"
-                  fill="none"
-                  strokeDasharray="251"
-                  strokeDashoffset="0"
-                >
+              <svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="40" strokeWidth="8" fill="none" strokeDasharray="251" strokeDashoffset="0">
                   <animateTransform
                     attributeName="transform"
                     type="rotate"
@@ -424,12 +343,7 @@ const ExperienceForm: React.FC = () => {
                     dur="1s"
                     repeatCount="indefinite"
                   />
-                  <animate
-                    attributeName="stroke-dashoffset"
-                    values="0;251"
-                    dur="1s"
-                    repeatCount="indefinite"
-                  />
+                  <animate attributeName="stroke-dashoffset" values="0;251" dur="1s" repeatCount="indefinite" />
                 </circle>
               </svg>
             </div>
@@ -440,21 +354,18 @@ const ExperienceForm: React.FC = () => {
 
           {/* Mensaje de éxito */}
           {showSuccessMessage && (
-            <article className="modal-overlay"> 
+            <article className="modal-overlay">
               <div className="experience-form-response">
                 <h3>¡Gracias! Su mensaje fue enviado con éxito.</h3>
-            
               </div>
             </article>
           )}
 
           {/* Mensaje de error */}
           {showErrorMessage && (
-            <article className="modal-overlay error-modal"> 
+            <article className="modal-overlay error-modal">
               <div className="experience-form-response error-response">
                 <h3>{errorMessage}</h3>
-              
-              
               </div>
             </article>
           )}
@@ -465,3 +376,4 @@ const ExperienceForm: React.FC = () => {
 };
 
 export default ExperienceForm;
+```

@@ -1,0 +1,143 @@
+@use "@/styles/variables.scss" as *;
+
+.form-container {
+  font-family: var(--font-family-base);
+  padding: var(--spacing-lg);
+  max-width: 600px;
+  margin: auto;
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--transition-normal);
+
+  h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-xl);
+    color: var(--color-primary);
+  }
+
+  form {
+    label {
+      display: block;
+      margin-top: var(--spacing-md);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-primary);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    textarea {
+      width: 100%;
+      padding: var(--spacing-sm);
+      margin-top: var(--spacing-xs);
+      box-sizing: border-box;
+      border-radius: var(--border-radius-sm);
+      border: var(--border-width) solid var(--border-color);
+      background-color: var(--color-surface);
+      color: var(--color-text-primary);
+      font-size: var(--font-size-base);
+      transition: border-color var(--transition-fast);
+
+      &:focus {
+        outline: none;
+        border-color: var(--color-primary);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: var(--spacing-xs);
+    }
+
+    .howMet {
+      label {
+        display: block;
+        margin-top: var(--spacing-xs);
+      }
+    }
+
+    .social-buttons {
+      margin-top: var(--spacing-sm);
+
+      strong {
+        display: block;
+        margin-bottom: var(--spacing-xs);
+      }
+
+      button {
+        margin-right: var(--spacing-sm);
+        padding: var(--spacing-xs) var(--spacing-md);
+        border: none;
+        background-color: var(--color-secondary-light);
+        border-radius: var(--border-radius-sm);
+        cursor: pointer;
+        font-weight: var(--font-weight-bold);
+        transition: background-color var(--transition-fast);
+
+        &:hover {
+          background-color: var(--color-secondary-dark);
+          color: white;
+        }
+
+        &.active {
+          background-color: var(--color-primary);
+          color: white;
+        }
+      }
+    }
+
+    .stars {
+      margin-top: var(--spacing-xs);
+
+      i {
+        font-size: 24px;
+        color: var(--color-text-disabled);
+        cursor: pointer;
+        transition: color var(--transition-fast);
+
+        &.selected {
+          color: var(--color-warning);
+        }
+      }
+    }
+
+    button[type="submit"],
+    .btn {
+      margin-top: var(--spacing-lg);
+      background-color: var(--color-success);
+      color: white;
+      border: none;
+      padding: var(--spacing-md);
+      width: 100%;
+      border-radius: var(--border-radius-md);
+      font-size: var(--font-size-base);
+      cursor: pointer;
+      font-weight: var(--font-weight-bold);
+      transition: background-color var(--transition-fast);
+
+      &:hover {
+        background-color: var(--color-secondary-dark);
+      }
+    }
+  }
+
+  .outputBox {
+    margin-top: var(--spacing-lg);
+    background: var(--color-surface);
+    padding: var(--spacing-sm);
+    white-space: pre-wrap;
+    color: var(--color-text-secondary);
+    border: var(--border-width) dashed var(--color-primary-light);
+    border-radius: var(--border-radius-sm);
+  }
+  .error-message {
+    color: red;
+  }
+}

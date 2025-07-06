@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import axiosInstance from "@/lib/axios";
 import "./menus.scss";
 import { ChipButtonsCategories } from "@/components/ChipButtonsCategories/ChipButtonsCategories";
-import ChipComp from "@/components/ChipButtonsCategories/ChipComp";
 
 interface IMenu {
   id: number;

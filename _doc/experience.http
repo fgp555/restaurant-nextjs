@@ -1,5 +1,5 @@
 ### 📄 Create new experience
-POST https://giomr.site/api/experience
+POST http://localhost:3000/api/experience
 Content-Type: application/json
 
 {
@@ -18,19 +18,19 @@ Content-Type: application/json
 ###
 
 ### 📄 Get all experiences
-GET https://giomr.site/api/experience
+GET http://localhost:3000/api/experience
 Content-Type: application/json
 
 ###
 
 ### 📄 Get one experience by ID
-GET https://giomr.site/api/experience/1
+GET http://localhost:3000/api/experience/1
 Content-Type: application/json
 
 ###
 
 ### 📄 Update experience by ID
-PUT https://giomr.site/api/experience/1
+PUT http://localhost:3000/api/experience/1
 Content-Type: application/json
 
 {
@@ -49,5 +49,5 @@ Content-Type: application/json
 ###
 
 ### 📄 Delete experience by ID
-DELETE https://giomr.site/api/experience/1
+DELETE http://localhost:3000/api/experience/1
 Content-Type: application/json
