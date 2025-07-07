@@ -1,0 +1,132 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "dynamicRoutes": [
+    {
+      "page": "/feedback/[sede]",
+      "regex": "^/feedback/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPsede": "nxtPsede"
+      },
+      "namedRegex": "^/feedback/(?<nxtPsede>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/[slug]",
+      "regex": "^/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/(?<nxtPslug>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/FeedbackPage/FeedbackForm",
+      "regex": "^/FeedbackPage/FeedbackForm(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/FeedbackPage/FeedbackForm(?:/)?$"
+    },
+    {
+      "page": "/HomePage/HomePage",
+      "regex": "^/HomePage/HomePage(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/HomePage/HomePage(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/in",
+      "regex": "^/in(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/in(?:/)?$"
+    },
+    {
+      "page": "/in/cuenta",
+      "regex": "^/in/cuenta(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/in/cuenta(?:/)?$"
+    },
+    {
+      "page": "/in/delivery",
+      "regex": "^/in/delivery(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/in/delivery(?:/)?$"
+    },
+    {
+      "page": "/in/desings",
+      "regex": "^/in/desings(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/in/desings(?:/)?$"
+    },
+    {
+      "page": "/in/menu",
+      "regex": "^/in/menu(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/in/menu(?:/)?$"
+    },
+    {
+      "page": "/in/meseros",
+      "regex": "^/in/meseros(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/in/meseros(?:/)?$"
+    },
+    {
+      "page": "/in/sedes",
+      "regex": "^/in/sedes(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/in/sedes(?:/)?$"
+    },
+    {
+      "page": "/info",
+      "regex": "^/info(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/info(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "RSC",
+    "varyHeader": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch",
+    "prefetchHeader": "Next-Router-Prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "Next-Router-Segment-Prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  },
+  "rewrites": []
+}

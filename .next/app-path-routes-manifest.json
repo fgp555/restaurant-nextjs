@@ -1,0 +1,15 @@
+{
+  "/favicon.ico/route": "/favicon.ico",
+  "/_not-found/page": "/_not-found",
+  "/[slug]/page": "/[slug]",
+  "/feedback/[sede]/page": "/feedback/[sede]",
+  "/info/page": "/info",
+  "/page": "/",
+  "/in/cuenta/page": "/in/cuenta",
+  "/in/delivery/page": "/in/delivery",
+  "/in/desings/page": "/in/desings",
+  "/in/page": "/in",
+  "/in/menu/page": "/in/menu",
+  "/in/meseros/page": "/in/meseros",
+  "/in/sedes/page": "/in/sedes"
+}

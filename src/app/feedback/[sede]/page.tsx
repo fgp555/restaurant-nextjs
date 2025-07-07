@@ -3,7 +3,7 @@
 import { useParams, notFound } from "next/navigation";
 import FeedbackForm from "@/pages/FeedbackPage/FeedbackForm";
 
-const sedesDisponibles = ["sangilena", "sangilena-campestre"];
+const sedesDisponibles = ["sangilena-bga", "sangilena-campestre"];
 
 export default function FeedbackBySede() {
   const params = useParams();

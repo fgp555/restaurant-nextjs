@@ -6,6 +6,7 @@ import { useState } from "react";
 import "./FeedbackForm.scss";
 import axiosInstance from "@/lib/axios";
 import { validateField } from "@/lib/validate.feedback";
+import { ModalComp } from "@/components/ModalComp/ModalComp";
 
 type Props = {
   sede: string;
@@ -29,6 +30,7 @@ const FeedbackForm = ({ sede }: Props) => {
   const [rating, setRating] = useState(0);
   const [showImprovementBox, setShowImprovementBox] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [showModal, setShowModal] = useState(false);
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -77,7 +79,7 @@ const FeedbackForm = ({ sede }: Props) => {
 
     try {
       await axiosInstance.post("/feedback", payload);
-      alert("Formulario enviado correctamente.");
+      // alert("Formulario enviado correctamente. Por favor revisar su bandeja de entrada y su carpeta de spam.");
 
       // Reset
       formElement.reset();
@@ -89,7 +91,14 @@ const FeedbackForm = ({ sede }: Props) => {
       setErrors({});
 
       // ✅ Redirección a URL externa
-      window.location.href = urlReview;
+      // window.location.href = urlReview;
+
+      // ✅ Redirección a Modal
+      setShowModal(true);
+
+      setTimeout(() => {
+        window.location.href = urlReview;
+      }, 2000); // 2 segundos
     } catch (err) {
       alert("Error al enviar el formulario.");
       console.error(err);
@@ -216,6 +225,10 @@ const FeedbackForm = ({ sede }: Props) => {
           <button type="submit">Continuar</button>
         </div>
       </form>
+
+      <ModalComp isOpen={showModal} onClose={() => setShowModal(false)} title="Mensaje">
+        <p>¡Formulario enviado correctamente! Revisa tu correo y carpeta de spam.</p>
+      </ModalComp>
     </div>
   );
 };
