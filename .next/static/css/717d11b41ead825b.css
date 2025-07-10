@@ -1,1 +1,0 @@
-.home-page{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center;background-color:var(--color-background)}.home-page .title{font-size:2rem;color:var(--color-text-primary)}.home-page .qr-image{margin-top:1.5rem;max-width:200px}

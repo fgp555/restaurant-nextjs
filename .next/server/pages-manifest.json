@@ -1,8 +1,0 @@
-{
-  "/FeedbackPage/FeedbackForm": "pages/FeedbackPage/FeedbackForm.html",
-  "/HomePage/HomePage": "pages/HomePage/HomePage.html",
-  "/_error": "pages/_error.js",
-  "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
-  "/404": "pages/404.html"
-}
