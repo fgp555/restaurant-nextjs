@@ -1,5 +1,5 @@
-### 📄 Create new experience: agregar
-POST https://giomr.site/api/experience
+### 📄 Create new experience
+POST http://localhost:3000/api/experience
 Content-Type: application/json
 
 {
@@ -7,17 +7,47 @@ Content-Type: application/json
   "email": "juan@example.com",
   "whatsapp": "+51999999999",
   "birthday": "1990-07-02",
-  "sawAd": true,
-  "howDidYouKnowUs": "Por Instagram",
-  "branchVisited": "Sede Central",
   "waiterName": "Carlos",
-  "experienceRating": 5,
-  "improvementSuggestions": "Todo excelente, sigan así"
+  "howDidYouKnowUs": "anuncio",
+  "socialMediaSource": "instagram",
+  "experienceRating": 4,
+  "improvementSuggestions": "Todo estuvo bien, pero podría ser más rápido el servicio.",
+  "acceptTerms": true
 }
 
 ###
 
-### 📄 Get all experiences consultar
-GET https://giomr.site/api/experience
+### 📄 Get all experiences
+GET http://localhost:3000/api/experience
 Content-Type: application/json
 
+###
+
+### 📄 Get one experience by ID
+GET http://localhost:3000/api/experience/1
+Content-Type: application/json
+
+###
+
+### 📄 Update experience by ID
+PUT http://localhost:3000/api/experience/1
+Content-Type: application/json
+
+{
+  "name": "Juan Actualizado",
+  "email": "juan.actualizado@example.com",
+  "whatsapp": "+51999999888",
+  "birthday": "1990-07-03",
+  "waiterName": "Ana",
+  "howDidYouKnowUs": "cliente",
+  "socialMediaSource": "",
+  "experienceRating": 5,
+  "improvementSuggestions": "",
+  "acceptTerms": true
+}
+
+###
+
+### 📄 Delete experience by ID
+DELETE http://localhost:3000/api/experience/1
+Content-Type: application/json

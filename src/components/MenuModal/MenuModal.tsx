@@ -7,6 +7,7 @@ type Menu = {
   id: number;
   name: string;
   image?: string | null;
+  image?: string | null;
   price: number;
   description: string;
 };
@@ -23,6 +24,11 @@ export default function MenuModal({
   hasNext: boolean;
 }) {
   const modalRef = useRef<HTMLDivElement>(null);
+
+  const imageSrc =
+    menu.image && menu.image !== "null"
+      ? menu.image
+      : "https://images-mini.cluvi.com/fOV3vuIoU0/w_1200_fOV3vuIoU0_la-llanera-sangilena-43.png";
 
   const imageSrc =
     menu.image && menu.image !== "null"

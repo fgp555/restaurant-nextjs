@@ -5,6 +5,7 @@ type Menu = {
   id: number;
   name: string;
   image?: string | null;
+  image?: string | null;
   price: number;
 };
 
