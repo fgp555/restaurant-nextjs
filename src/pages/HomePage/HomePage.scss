@@ -1,19 +1,25 @@
-.home-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  text-align: center;
-  background-color: var(--color-background);
+// @import "../../styles/variables";
+@use "../../styles/variables" as *;
 
-  .title {
-    font-size: 2rem;
-    color: var(--color-text-primary);
+.home-page {
+  padding: var(--spacing-lg);
+  background-color: var(--color-surface);
+
+  h1 {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
   }
 
-  .qr-image {
-    margin-top: 1.5rem;
-    max-width: 200px;
+  .cta-button {
+    background-color: var(--color-primary);
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--color-primary-dark);
+    }
   }
 }
