@@ -62,3 +62,16 @@ axiosInstance.interceptors.response.use(
 );
 
 export default axiosInstance;
+// // lib/axiosInstance.ts
+// import axios from 'axios';
+
+// const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+
+// const axiosInstance = axios.create({
+//   baseURL: 'https://express-js-login.onrender.com/api',
+//   headers: {
+//     Authorization: token ? `Bearer ${token}` : '',
+//   },
+// });
+
+// export default axiosInstance;

@@ -2,7 +2,7 @@
 // 'use client';
 
 // import { useAuth } from '@/hooks/useAuth';
-// import axiosInstance from '@/lib/axiosInstance';
+// import axiosInstance from '@/lib/axios';
 
 // export default function Dashboard() {
 //   const { user, loading } = useAuth();
