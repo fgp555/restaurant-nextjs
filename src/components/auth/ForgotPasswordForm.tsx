@@ -1,53 +1,55 @@
-'use client';
+// src/components/auth/ForgotPasswordForm.tsx
+"use client";
 
-import { useState } from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import { sendForgotPasswordEmail } from "@/services/authService";
+import { validateEmail } from "@/utils/validations";
 
-export default function ForgotPasswordForm() {
-  const [email, setEmail] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [successMsg, setSuccessMsg] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
+export const ForgotPasswordForm = () => {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-    setErrorMsg('');
-    setSuccessMsg('');
+    setError("");
+    setSuccess("");
 
+    const emailError = validateEmail(email);
+    if (emailError) return setError(emailError);
+
+    setLoading(true);
     try {
-      await axios.post('/api/auth/forgot-password', {
-        email,
-        baseURL: window.location.origin,
-      });
-      setSuccessMsg('Si el correo está registrado, recibirás un enlace para restablecer tu contraseña.');
-    } catch (error: any) {
-      setErrorMsg('Hubo un error. Intentá más tarde.');
+      await sendForgotPasswordEmail(email, window.location.origin);
+      setSuccess("Si el correo está registrado, recibirás un enlace para restablecer tu contraseña.");
+    } catch (err: any) {
+      setError("Ocurrió un error al intentar enviar el enlace. Intenta nuevamente.");
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
-      <label htmlFor="email" className="block text-sm font-medium">Email</label>
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4 space-y-4">
+      <h2 className="text-xl font-semibold">¿Olvidaste tu contraseña?</h2>
       <input
         type="email"
-        required
+        placeholder="Correo electrónico"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="w-full p-2 border rounded"
+        className="w-full border p-2 rounded"
+        required
       />
+      {error && <p className="text-red-500 text-sm">{error}</p>}
+      {success && <p className="text-green-600 text-sm">{success}</p>}
       <button
         type="submit"
-        disabled={isLoading}
+        disabled={loading}
         className="w-full bg-blue-500 text-white p-2 rounded disabled:opacity-50"
       >
-        {isLoading ? 'Enviando...' : 'Enviar enlace de restablecimiento'}
+        {loading ? "Enviando..." : "Enviar enlace"}
       </button>
-
-      {successMsg && <p className="text-green-600">{successMsg}</p>}
-      {errorMsg && <p className="text-red-600">{errorMsg}</p>}
     </form>
   );
-}
+};
