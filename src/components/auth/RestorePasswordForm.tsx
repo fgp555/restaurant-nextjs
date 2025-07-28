@@ -18,7 +18,7 @@ export const RestorePasswordForm = () => {
 
   useEffect(() => {
     if (searchParams) {
-      const token = searchParams.get("resetToken");
+      const token = searchParams.get("token");
       if (token) {
         setResetToken(token);
       } else {

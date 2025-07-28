@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import axiosInstance from '@/lib/axios';
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -50,7 +51,7 @@ const RegisterForm = () => {
     setLoading(true);
 
     try {
-      await axios.post('https://express-js-login.onrender.com/api/auth/register', {
+      await axiosInstance.post('/auth/register', {
         name: form.name,
         email: form.email,
         password: form.password,
