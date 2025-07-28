@@ -1,5 +1,5 @@
 // src/config/index.ts
-export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://giomr.site";
+export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
 const config = {
   apiBaseUrl: baseUrl + "/api",

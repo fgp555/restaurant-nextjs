@@ -30,7 +30,7 @@ const LoginForm = () => {
 
     try {
       const res = await axios.post(
-        'https://express-js-login.onrender.com/api/auth/login',
+        'http://localhost:3000/api/auth/login',
         {
           email,
           password,
@@ -42,7 +42,7 @@ const LoginForm = () => {
         }
       );
 
-      const token = res.data?.token;
+      const token = res.data?.accessToken;
       if (token) {
         localStorage.setItem('token', token);
         router.push('/dashboard');

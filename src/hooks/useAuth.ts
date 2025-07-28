@@ -23,7 +23,7 @@ export const useAuth = () => {
     }
 
     try {
-      const res = await axiosInstance.get('/auth/me'); // Endpoint que devuelve info del usuario autenticado
+      const res = await axiosInstance.get('/users/findOne/687ac7a1f7a5da4b0b28fc8e'); // Endpoint que devuelve info del usuario autenticado
       setUser(res.data.user);
     } catch (error) {
       console.error(error);
