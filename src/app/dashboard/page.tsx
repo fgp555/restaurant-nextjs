@@ -1,8 +1,16 @@
 // app/dashboard/page.tsx
 'use client';
+
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import axiosInstance from '@/lib/axios';
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: 'admin' | 'client' | string;
+}
 
 export default function Dashboard() {
   const { user, loading } = useAuth();
@@ -14,8 +22,9 @@ export default function Dashboard() {
     try {
       await axiosInstance.delete(`/users/${id}`);
       alert('Usuario eliminado');
-      // Opcional: refrescar lista de usuarios
+      // Opcional: Recargar después de eliminación
     } catch (error) {
+      console.error(error);
       alert('Error al eliminar');
     }
   };
@@ -34,15 +43,25 @@ export default function Dashboard() {
 }
 
 function AdminDashboard({ onDelete }: { onDelete: (id: string) => void }) {
-  const [users, setUsers] = useState<any[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const res = await axiosInstance.get('/users');
-      setUsers(res.data);
+      try {
+        const res = await axiosInstance.get('/users');
+        setUsers(res.data);
+      } catch (error) {
+        console.error('Error al obtener usuarios:', error);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchUsers();
   }, []);
+
+  if (loading) return <p>Cargando usuarios...</p>;
+  if (users.length === 0) return <p>No hay usuarios disponibles.</p>;
 
   return (
     <div>
@@ -67,7 +86,7 @@ function AdminDashboard({ onDelete }: { onDelete: (id: string) => void }) {
   );
 }
 
-function UserDashboard({ user }: { user: any }) {
+function UserDashboard({ user }: { user: User }) {
   return (
     <div>
       <h2 className="text-xl mb-2">Perfil</h2>
